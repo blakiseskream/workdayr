@@ -4,8 +4,10 @@ Query Workday with R!
 
 ## Installation
   
-  # install.packages('devtools')
-  devtools::install_github('blakiseskream/workdayr')
+```r
+# install.packages('devtools')
+devtools::install_github('blakiseskream/workdayr')
+```
 
 ## Functions
 
