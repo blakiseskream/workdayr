@@ -9,7 +9,7 @@ Description: Package to interface with the Workday API, specifically the Report 
 License: GPL
 Encoding: UTF-8
 Imports:
-  RCurl,
+  httr,
   urltools,
   dplyr,
   purrr

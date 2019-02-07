@@ -11,6 +11,7 @@
 #' @param password character. The password of the user who has access to the report.
 #' @param params list. URL parameters to send into \code{httr::GET()}. Defaults to \code{list(format='csv')}. Common params include \code{list(Effective_as_of_date='2018-10-01-07:00')}.
 #' @param return_format what format should you get the \code{GET()} response back as? Defaults to \code{"binary"}. Options are \code{"binary"} or \code{"http_response"}. If you get back the binary you can pass into \code{readr::read_*} to parse the data.
+#' @param url_params Deprecated use params.
 #' @param ... parameters to pass into \code{httr::GET()}.
 #'
 #' @import dplyr

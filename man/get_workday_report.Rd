@@ -5,7 +5,8 @@
 \title{Retrieve a report via the Workday RaaS}
 \usage{
 get_workday_report(report_name, organization, username, password,
-  url_params = c(format = "csv"), ...)
+  params = list(format = "csv"), return_format = "binary",
+  url_params = NULL, ...)
 }
 \arguments{
 \item{report_name}{character. The name of the report. It should have the format REPORT_OWNER/REPORT_NAME you will need to pass the full string in.}
@@ -16,12 +17,16 @@ get_workday_report(report_name, organization, username, password,
 
 \item{password}{character. The password of the user who has access to the report.}
 
-\item{url_params}{named vector of key value pairs. Defaults to \code{c('format'='csv')}. Common params include \code{c('Effective_as_of_date'='2018-10-01-07:00')}.}
+\item{params}{list. URL parameters to send into \code{httr::GET()}. Defaults to \code{list(format='csv')}. Common params include \code{list(Effective_as_of_date='2018-10-01-07:00')}.}
 
-\item{...}{parameters to pass into \code{RCurl::getURL()}}
+\item{return_format}{what format should you get the \code{GET()} response back as? Defaults to \code{"binary"}. Options are \code{"binary"} or \code{"http_response"}. If you get back the binary you can pass into \code{readr::read_*} to parse the data.}
+
+\item{url_params}{Deprecated use params.}
+
+\item{...}{parameters to pass into \code{httr::GET()}.}
 }
 \description{
 Query's the Workday Report As a Service API. A tutorial on how to use this API is located \href{https://docs.workato.com/connectors/workday/workday_raas.html}{here}
-This function specifically uses \code{RCurl::getURL()} to return the result as text or binary. After you get the response you can use a \code{readr} function to read the result such as
-\code{readr::read_csv}.
+This function specifically uses \code{httr::GET()} to return the result as http_response or binary. After you get the response you can use a \code{readr} function to read the result such as
+\code{readr::read_csv}. Note that this endpoint has been producing SSL errors. The \code{httr::GET()} request is wrapped in a \code{purrr::safely()} to get binary response when the request fails.
 }

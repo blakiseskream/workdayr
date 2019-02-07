@@ -23,7 +23,7 @@ report_data <- get_workday_report(
   report_name = 'report_owner/workday_headcount_report', 
   username = 'api_user', 
   password = 'api_password', 
-  url_params = c('Effective_as_of_Date'='2018-10-01-07:00','format'='csv'), 
+  params = list(Effective_as_of_Date='2018-10-01-07:00',format='csv'), 
   organization = 'my_organization'
 )
 
