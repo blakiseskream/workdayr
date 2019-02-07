@@ -21,16 +21,18 @@ Function works like this
  
 ```r
 # Get report raw data
-report_data <- get_workday_report(
+report_path <- get_workday_report(
   report_name = 'report_owner/workday_headcount_report', 
   username = 'api_user', 
   password = 'api_password', 
   params = list(Effective_as_of_Date='2018-10-01-07:00',format='csv'), 
-  organization = 'my_organization'
+  organization = 'my_organization',
+  filepath = tempfile(),
+  overwrite = TRUE
 )
 
 # read it in as a tibble
-report <- readr::read_csv(report_data)
+report <- readr::read_csv(report_path)
 ```
 
 Ta da!

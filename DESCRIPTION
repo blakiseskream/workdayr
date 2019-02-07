@@ -1,7 +1,7 @@
 Package: workdayr
 Type: Package
 Title: Query Workday from R
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: person("Andrew", "Watson", email = "adwatson2010@gmail.com",
   role = c("aut", "cre"))
 Maintainer: The package maintainer <yourself@somewhere.net>

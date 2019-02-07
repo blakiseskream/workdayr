@@ -5,8 +5,8 @@
 \title{Retrieve a report via the Workday RaaS}
 \usage{
 get_workday_report(report_name, organization, username, password,
-  params = list(format = "csv"), return_format = "binary",
-  url_params = NULL, ...)
+  params = list(format = "csv"), file_path = tempfile(),
+  overwrite = TRUE, url_params = NULL, ...)
 }
 \arguments{
 \item{report_name}{character. The name of the report. It should have the format REPORT_OWNER/REPORT_NAME you will need to pass the full string in.}
@@ -19,7 +19,9 @@ get_workday_report(report_name, organization, username, password,
 
 \item{params}{list. URL parameters to send into \code{httr::GET()}. Defaults to \code{list(format='csv')}. Common params include \code{list(Effective_as_of_date='2018-10-01-07:00')}.}
 
-\item{return_format}{what format should you get the \code{GET()} response back as? Defaults to \code{"binary"}. Options are \code{"binary"} or \code{"http_response"}. If you get back the binary you can pass into \code{readr::read_*} to parse the data.}
+\item{file_path}{where should the report be saved? Defaults to \code{tempfile()}.}
+
+\item{overwrite}{boolean. Should the be overwritten? Defaults to \code{TRUE}.}
 
 \item{url_params}{Deprecated use params.}
 
@@ -27,6 +29,7 @@ get_workday_report(report_name, organization, username, password,
 }
 \description{
 Query's the Workday Report As a Service API. A tutorial on how to use this API is located \href{https://docs.workato.com/connectors/workday/workday_raas.html}{here}
-This function specifically uses \code{httr::GET()} to return the result as http_response or binary. After you get the response you can use a \code{readr} function to read the result such as
-\code{readr::read_csv}. Note that this endpoint has been producing SSL errors. The \code{httr::GET()} request is wrapped in a \code{purrr::safely()} to get binary response when the request fails.
+This function specifically uses \code{httr::GET(httr::write_disk())} to return the result as a file_path to the saved report.
+After you get the response you can use a \code{readr} function to read the result such as \code{readr::read_csv}.
+Note that this endpoint has been producing SSL errors. The \code{httr::GET()} request is wrapped in a \code{purrr::safely()} to write the file to disk regardless of error.
 }
