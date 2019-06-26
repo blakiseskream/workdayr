@@ -14,6 +14,7 @@
 #' @param file_path where should the report be saved? Defaults to \code{tempfile()}.
 #' @param overwrite boolean. Should the be overwritten? Defaults to \code{TRUE}.
 #' @param url_params Deprecated use params.
+#' @param endpoint character. The endpoint for the Workday RaaS. Defaults to \code{https://wd5-services1.myworkday.com/ccx/service/customreport2/}
 #' @param ... parameters to pass into \code{httr::GET()}.
 #'
 #' @import dplyr
@@ -28,6 +29,7 @@ get_workday_report <- function(
   ,file_path = tempfile()
   ,overwrite = TRUE
   ,url_params = NULL
+  ,endpoint = 'https://wd5-services1.myworkday.com/ccx/service/customreport2/'
   ,...
 ) {
 
@@ -36,7 +38,6 @@ get_workday_report <- function(
   }
 
   # create url
-  endpoint <- 'https://wd5-services1.myworkday.com/ccx/service/customreport2/'
   query_url <- paste0(
       endpoint
     , organization

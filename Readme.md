@@ -35,6 +35,22 @@ report_path <- get_workday_report(
 report <- readr::read_csv(report_path)
 ```
 
+There is an option parameter added for `endpoint` if you have a custom end point for the Workday RaaS,
+
+```r
+# Get report raw data
+report_path <- get_workday_report(
+  report_name = 'report_owner/workday_headcount_report', 
+  username = 'api_user', 
+  password = 'api_password', 
+  params = list(Effective_as_of_Date='2018-10-01-07:00',format='csv'), 
+  organization = 'my_organization',
+  filepath = tempfile(),
+  overwrite = TRUE,
+  endpoint = 'https://services1.myworkday.com/ccx/service/customreport2/'
+)
+```
+
 Ta da!
 
 Have fun.
